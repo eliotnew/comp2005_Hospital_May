@@ -9,8 +9,8 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
 
 public class GetAllocations {
-    public Allocation[] getAllocations(){
-        String url = "https://web.socem.plymouth.ac.uk/COMP2005/api/Allocations";
+    public static Allocation[] getAllocations(String url){
+
 
         // apache http client gets the whole table
         HttpClient client = HttpClientBuilder.create().build();
