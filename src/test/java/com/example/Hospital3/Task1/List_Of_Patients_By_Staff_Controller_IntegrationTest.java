@@ -20,6 +20,7 @@ class List_Of_Patients_By_Staff_Controller_IntegrationTest {
     private GetPatientIDWithAdmissionID mockGetStaffsPatients = mock(GetPatientIDWithAdmissionID.class);
     private RemoveDuplicates realRemove = new RemoveDuplicates();
     List_Of_Patients_By_Staff_Controller realController;
+    String url = "https://web.socem.plymouth.ac.uk/COMP2005/api/Allocations";
 
 
 
@@ -40,7 +41,7 @@ class List_Of_Patients_By_Staff_Controller_IntegrationTest {
 
         testAllocations[0] = allocation1;
 
-        when(mockGetAllocations.getAllocations()).thenReturn(testAllocations); //does not require a running database and api
+        when(mockGetAllocations.getAllocations(url)).thenReturn(testAllocations); //does not require a running database and api
 
 
         List<Integer> mockPatientIDList = new ArrayList<>();

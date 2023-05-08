@@ -28,9 +28,10 @@ public class List_Of_Patients_By_Staff_Controller {
 
     @GetMapping("/getmypatients/{id}")
     public List<Integer> Get_Staffs_Patients(@PathVariable int id) {
+        String url = "https://web.socem.plymouth.ac.uk/COMP2005/api/Allocations";
         try {
             //Creates an array of models from a GET
-            Allocation[] theAllocations = getAllocations.getAllocations();
+            Allocation[] theAllocations = getAllocations.getAllocations(url);
 
             //Creates a List of Admission IDs
             List<Integer> patientsAdmissions = createAdmissionIDList.createAdmissionIDList(theAllocations, id);
