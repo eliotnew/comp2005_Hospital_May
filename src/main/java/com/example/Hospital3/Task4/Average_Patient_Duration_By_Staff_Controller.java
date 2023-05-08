@@ -33,7 +33,7 @@ public class Average_Patient_Duration_By_Staff_Controller {
         String answer = "Variable not set";
 
         try{
-            Allocation[] allocations = GetAllocations.getAllocations(API_URL_Allocations); //Gets all allocations
+            Allocation[] allocations = getAllocations.getAllocations(API_URL_Allocations); //Gets all allocations
 
             List<Integer> admissionIDs = getAdmissionIDsFromEmployeeID.getAdmissionIDsFromEmployeeID(id,allocations);//Finds all admissions linked to staff ID
 

@@ -9,7 +9,7 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
 
 public class GetAllocations {
-    public static Allocation[] getAllocations(String url){
+    public  Allocation[] getAllocations(String url){
 
 
         // apache http client gets the whole table
