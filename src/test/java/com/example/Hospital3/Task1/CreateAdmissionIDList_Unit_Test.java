@@ -26,8 +26,8 @@ class CreateAdmissionIDList_Unit_Test {
         allocation1.setId(43);
         allocation1.setAdmissionID(121);
         allocation1.setEmployeeID(40);
-        allocation1.setStartTime("2020-11-28T16:45:00");
-        allocation1.setEndTime("2020-11-28T17:45:00");
+        allocation1.setStartTime("2020-11-28T16:45:00.000Z");
+        allocation1.setEndTime("2020-11-28T17:45:000Z");
 
         testAllocations[0] = allocation1;
 

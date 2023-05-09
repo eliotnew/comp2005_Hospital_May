@@ -2,6 +2,7 @@ package com.example.Hospital3.Task1;
 
 import Models.Allocation;
 import org.junit.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -16,18 +17,16 @@ class List_Of_Patients_By_Staff_Controller_IntegrationTest {
 
 
     private GetAllocations mockGetAllocations = mock(GetAllocations.class);
-    private CreateAdmissionIDList realCreateAdmissionIDList = new CreateAdmissionIDList();
+    private CreateAdmissionIDList realCreateAdmissionIDList;
     private GetPatientIDWithAdmissionID mockGetStaffsPatients = mock(GetPatientIDWithAdmissionID.class);
-    private RemoveDuplicates realRemove = new RemoveDuplicates();
+    private RemoveDuplicates realRemove;
     List_Of_Patients_By_Staff_Controller realController;
     String url = "https://web.socem.plymouth.ac.uk/COMP2005/api/Allocations";
 
 
 
-    @Before
+    @BeforeEach
     public void setup(){
-
-       realController = new List_Of_Patients_By_Staff_Controller(mockGetAllocations,realCreateAdmissionIDList,mockGetStaffsPatients,realRemove);
 
 
         Allocation[] testAllocations = new Allocation[1];
@@ -49,6 +48,12 @@ class List_Of_Patients_By_Staff_Controller_IntegrationTest {
 
 
         when(mockGetStaffsPatients.getPatientIDWithAdmissionID(any())).thenReturn(mockPatientIDList); //saves doing an api get
+
+        realCreateAdmissionIDList = new CreateAdmissionIDList();
+        realRemove = new RemoveDuplicates();
+
+        // Inject the real and mock dependant class objects into the contructor of this controller we are testing on.
+        realController = new List_Of_Patients_By_Staff_Controller( mockGetAllocations, realCreateAdmissionIDList, mockGetStaffsPatients, realRemove);
 
     }
 
