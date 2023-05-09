@@ -27,7 +27,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class List_Of_Patients_By_Staff_Controller_Functional_Test {
 
     //Test that uses mockMVC spring library to check that my controller is capable of sending a resposnebody and converts the output correctly to JSON
-    //Also checks HTTP response is correct!
+    //Also checks HTTP response is correct!  .
     @Autowired
     private MockMvc mockMvc;
 
