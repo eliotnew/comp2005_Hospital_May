@@ -1,32 +1,27 @@
 package com.example.Hospital3.Task3;
 
 import Models.Admission;
-import com.example.Hospital3.Task3.GetAdmissions;
-import com.example.Hospital3.Task3.Most_Admissions_Controller;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
-@RunWith(SpringRunner.class)
-@SpringBootTest
+@ExtendWith(MockitoExtension.class)
 class Most_Admissions_ControllerTest_IntegrationTest {
-
-    @Autowired
     private Most_Admissions_Controller mostAdmissionsController;
-    
-
-    @MockBean
+    private GetDayTally getDayTally;
+    private HasMultipleBusiestDays hasMultipleBusiestDays;
+    private DetermineAllBusyDays determineAllBusyDays;
+    private DetermineBusiestDay determineBusiestDay;
     private GetAdmissions mockGetAdmissions; // I want to fake the Get response so that a running db is not required for this test.
 
-    @Test
-    public void assessString() throws IOException {
+    @BeforeEach
+    public void setup(){
         Admission admissionTest = new Admission();
         admissionTest.setId(1);
         admissionTest.setPatientID(78);
@@ -35,8 +30,21 @@ class Most_Admissions_ControllerTest_IntegrationTest {
 
         Admission[] mockAdmissionsArray = new Admission[1];
         mockAdmissionsArray[0] = admissionTest;
-
+        mockGetAdmissions = mock(GetAdmissions.class);
         when(mockGetAdmissions.getAdmissions()).thenReturn(mockAdmissionsArray);
+
+
+        getDayTally = new GetDayTally();
+        hasMultipleBusiestDays = new HasMultipleBusiestDays();
+        determineAllBusyDays = new DetermineAllBusyDays();
+        determineBusiestDay = new DetermineBusiestDay();
+
+
+        mostAdmissionsController = new Most_Admissions_Controller(mockGetAdmissions,getDayTally,hasMultipleBusiestDays,determineAllBusyDays,determineBusiestDay);
+    }
+    @Test
+    public void assessString() throws IOException {
+
 
         String busiestDay = mostAdmissionsController.busiestDay();
         System.out.println(busiestDay);

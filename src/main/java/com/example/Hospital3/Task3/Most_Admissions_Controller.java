@@ -1,6 +1,7 @@
 package com.example.Hospital3.Task3;
 
 import Models.Admission;
+import com.example.Hospital3.Task2.GetShortStays;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -11,12 +12,20 @@ import java.util.Map;
 
 @RestController
 public class Most_Admissions_Controller {
-    GetAdmissions getAdmissions = new GetAdmissions();
-    GetDayTally getDayTally = new GetDayTally();
-    HasMultipleBusiestDays hasMultipleBusiestDays = new HasMultipleBusiestDays();
-    DetermineAllBusyDays determineAllBusyDays = new DetermineAllBusyDays();
+    private  GetAdmissions getAdmissions;
+    private GetDayTally getDayTally;
+    private HasMultipleBusiestDays hasMultipleBusiestDays;
+    private DetermineAllBusyDays determineAllBusyDays;
 
-    DetermineBusiestDay determineBusiestDay = new DetermineBusiestDay();
+    private DetermineBusiestDay determineBusiestDay;
+
+    public Most_Admissions_Controller(GetAdmissions getAdmissions,GetDayTally getDayTally,HasMultipleBusiestDays hasMultipleBusiestDays, DetermineAllBusyDays determineAllBusyDays ,DetermineBusiestDay determineBusiestDay) {
+        this.getAdmissions = getAdmissions;
+        this.getDayTally = getDayTally;
+        this.hasMultipleBusiestDays = hasMultipleBusiestDays;
+        this.determineAllBusyDays = determineAllBusyDays;
+        this.determineBusiestDay = determineBusiestDay;
+    }
 
     @GetMapping("/busiestday")
     public String busiestDay(){
